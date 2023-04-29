@@ -1,3 +1,8 @@
+
+
+
+const cors = require("cors");
+const app = express();
 const fs = require("fs");
 const express = require("express");
 const ytdl = require("ytdl-core");
