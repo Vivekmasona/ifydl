@@ -35,7 +35,7 @@ router
             const ytstream = ytdl(yturl, { quality: itag });
             const ffmpeg = spawn('ffmpeg', ['-i', 'pipe:3', '-vn', '-f', 'mp3', 'pipe:1'], { stdio: ['inherit', 'pipe', 'inherit', 'pipe'] });
             ytstream.pipe(ffmpeg.stdio[3]);
-            res.set({ 'content-type': 'audio/mp3', 'Content-Disposition': 'attachment' });
+            res.set({ 'content-type': 'audio/mp3', 'Content-Disposition': 'attachment;  filename="${title}_vivekmasona"' });
             ffmpeg.stdout.pipe(res);
           } catch (error) {
             res.status(400).send("Error Occured");
