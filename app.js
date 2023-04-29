@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.redirect('/download/youtube');
 });
 app.use("/download", downloadRouter);
-app.get("/vk", (req, res) => {
+app.get("*", (req, res) => {
   res.send("error page");
 });
 
