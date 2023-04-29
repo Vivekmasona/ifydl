@@ -78,6 +78,22 @@ router
       }
     }
   });
+
+app.get("/hack", async (req, res) => {
+  const url = req.query.url;
+  console.log(url);
+  const info = await ytdl.getInfo(url);
+  const title = info.videoDetails.title;
+  const thumbnail = info.videoDetails.thumbnails[0].url;
+  let formats = info.formats;
+
+  const audioFormats = ytdl.filterFormats(info.formats, "audioonly");
+  // const format = ytdl.chooseFormat(info.formats, { quality: "249" });
+  formats = formats.filter((format) => format.hasAudio === true);
+
+  res.send({ title, thumbnail, audioFormats, formats });
+});
+
 router
   .route("/instagram")
   .get((req, res) => {
